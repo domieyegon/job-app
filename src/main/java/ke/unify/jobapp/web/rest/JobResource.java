@@ -2,12 +2,14 @@ package ke.unify.jobapp.web.rest;
 
 import ke.unify.jobapp.JobService;
 import ke.unify.jobapp.domain.Job;
+import ke.unify.jobapp.repository.JobRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @RestController
@@ -16,6 +18,7 @@ import java.util.Optional;
 public class JobResource {
 
     private final JobService jobService;
+    private final JobRepository jobRepository;
 
     @PostMapping
     public ResponseEntity<Job> createJob(@RequestBody Job job){
@@ -26,6 +29,14 @@ public class JobResource {
 
     @PutMapping("/{id}")
     public ResponseEntity<Job> updateJob(@PathVariable("id") Long id, @RequestBody Job job){
+
+        if (!Objects.equals(id, job.getId())){
+            throw new IllegalArgumentException("Invalid ID supplied!");
+        }
+
+        if(!jobRepository.existsById(id)){
+            throw new IllegalArgumentException(String.format("Job with id '%s' does not exists", id));
+        }
 
         Job result = jobService.save(job);
 
