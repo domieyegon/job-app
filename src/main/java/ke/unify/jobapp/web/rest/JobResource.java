@@ -1,13 +1,12 @@
 package ke.unify.jobapp.web.rest;
 
-import ke.unify.jobapp.JobService;
+import ke.unify.jobapp.service.JobService;
 import ke.unify.jobapp.domain.Job;
 import ke.unify.jobapp.repository.JobRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;

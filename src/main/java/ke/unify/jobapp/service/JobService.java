@@ -1,4 +1,4 @@
-package ke.unify.jobapp;
+package ke.unify.jobapp.service;
 
 import ke.unify.jobapp.domain.Job;
 import ke.unify.jobapp.repository.JobRepository;

@@ -19,6 +19,9 @@ public class Job {
     private LocalDateTime postedOn;
     private LocalDateTime lastUpdatedOn;
 
+    @ManyToOne
+    private Company company;
+
     public Long getId() {
         return id;
     }
@@ -83,6 +86,14 @@ public class Job {
         this.lastUpdatedOn = lastUpdatedOn;
     }
 
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
+    }
+
     @Override
     public String toString() {
         return "Job{" +
@@ -94,6 +105,7 @@ public class Job {
                 ", location='" + location + '\'' +
                 ", postedOn=" + postedOn +
                 ", lastUpdatedOn=" + lastUpdatedOn +
+                ", company=" + company +
                 '}';
     }
 }

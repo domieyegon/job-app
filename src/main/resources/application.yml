@@ -6,6 +6,6 @@ spring:
     url: jdbc:h2:mem:jobs_db
   jpa:
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: update
     show-sql: true
 
