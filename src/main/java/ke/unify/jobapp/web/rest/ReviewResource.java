@@ -24,6 +24,17 @@ public class ReviewResource {
     @GetMapping("/reviews")
     public ResponseEntity<List<Review>> getAllReviews(@PathVariable(name = "companyId") Long companyId){
 
-        return ResponseEntity.ok().body(reviewService.getByCompany(companyId));
+        return ResponseEntity.ok().body(reviewService.getByCompanyId(companyId));
+    }
+
+    @GetMapping("/reviews/{id}")
+    public ResponseEntity<Review> getReviewById(@PathVariable(name = "companyId") Long companyId, @PathVariable(name = "id") Long id){
+
+        return ResponseEntity.ok().body(reviewService.getByCompanyIdAndId(companyId, id));
+    }
+
+    @DeleteMapping("/reviews/{id}")
+    public void deleteReview(@PathVariable(name = "companyId") Long companyId, @PathVariable(name = "id") Long id){
+        reviewService.deleteReview(companyId,  id);
     }
 }

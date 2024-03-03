@@ -9,3 +9,25 @@ spring:
       ddl-auto: update
     show-sql: true
 
+# Actuator
+management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: '*'
+  endpoints:
+    web:
+      exposure:
+        include: loggers, info, health, metrics
+  endpoint:
+    health:
+      show-details: always
+  info:
+    env:
+      enabled: true
+info:
+  app:
+    name: Job App
+    description: Job app build by Domie
+    version: 1.0.0
+

@@ -28,7 +28,15 @@ public class ReviewService {
         return reviewRepository.save(review);
     }
 
-    public List<Review> getByCompany(Long companyId){
+    public List<Review> getByCompanyId(Long companyId){
         return reviewRepository.findByCompanyId(companyId);
+    }
+
+    public Review getByCompanyIdAndId(Long companyId, Long id){
+        return reviewRepository.findByCompanyIdAndId(companyId, id).orElse(null);
+    }
+
+    public void deleteReview(Long companyId, Long id) {
+        reviewRepository.deleteByCompanyIdAndId(companyId, id);
     }
 }
