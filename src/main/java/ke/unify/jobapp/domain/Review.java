@@ -1,24 +1,26 @@
 package ke.unify.jobapp.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Entity
-@Table(name = "companies")
-public class Company {
+@Table(name = "reviews")
+public class Review {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
+    private String title;
     private String description;
+    private double rating;
     private LocalDateTime createdAt;
     private LocalDateTime lastUpdatedAt;
 
-    @OneToMany(mappedBy = "company")
-    private List<Review> reviews;
+    @JsonIgnore
+    @ManyToOne
+    private Company company;
 
     public Long getId() {
         return id;
@@ -28,12 +30,12 @@ public class Company {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getDescription() {
@@ -42,6 +44,14 @@ public class Company {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public double getRating() {
+        return rating;
+    }
+
+    public void setRating(double rating) {
+        this.rating = rating;
     }
 
     public LocalDateTime getCreatedAt() {
@@ -60,23 +70,24 @@ public class Company {
         this.lastUpdatedAt = lastUpdatedAt;
     }
 
-    public List<Review> getReviews() {
-        return reviews;
+    public Company getCompany() {
+        return company;
     }
 
-    public void setReviews(List<Review> reviews) {
-        this.reviews = reviews;
+    public void setCompany(Company company) {
+        this.company = company;
     }
 
     @Override
     public String toString() {
-        return "Company{" +
+        return "Review{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
+                ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
+                ", rating=" + rating +
                 ", createdAt=" + createdAt +
                 ", lastUpdatedAt=" + lastUpdatedAt +
-                ", reviews=" + reviews +
+                ", company=" + company +
                 '}';
     }
 }
